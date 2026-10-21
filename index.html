@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GARVEE SEO 内容增长与销售激励方案</title>
+<style>
+:root{
+  --bg:#f4f5f7;--ink:#17212f;--muted:#5b6779;--line:#dde3ea;--card:#fff;
+  --accent:#0f6b5c;--accent-soft:#e4f2ee;--accent-line:#b7d9d0;
+  --amber:#8a5c04;--amber-soft:#fdf3dc;--amber-line:#e8d09a;
+  --red:#a63438;--red-soft:#fbeaea;--red-line:#e7bcbe;
+  --indigo:#3f3f8f;
+  --radius:12px;
+  font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.7;
+}
+*{box-sizing:border-box}
+body{margin:0}
+a{color:var(--accent)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;background:#eef1f5;padding:1px 5px;border-radius:4px}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(160deg,#17212f,#1f3348 60%,#0f6b5c);color:#fff;padding:44px max(20px,calc((100vw - 1180px)/2)) 38px}
+.brand{font-size:12px;font-weight:800;letter-spacing:.16em;color:#9fd6c9;text-transform:uppercase}
+h1{font-size:clamp(24px,3.4vw,36px);line-height:1.3;margin:14px 0 10px;font-weight:800}
+.lede{color:#c8d3e0;font-size:15px;max-width:76ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;font-size:12px}
+.meta span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 12px;color:#e5ecf3}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+.layout{display:grid;grid-template-columns:224px minmax(0,1fr);gap:36px;align-items:start}
+nav.toc{position:sticky;top:24px;padding:20px 0;font-size:13px}
+nav.toc p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 10px}
+nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+nav.toc li{counter-increment:toc;margin:0}
+nav.toc a{display:block;padding:5px 10px 5px 0;border-left:2px solid transparent;color:var(--muted);text-decoration:none;line-height:1.45}
+nav.toc a::before{content:counter(toc) ". ";color:#a3adbb}
+nav.toc a:hover{color:var(--accent);border-left-color:var(--accent);padding-left:8px;background:#fff}
+main{padding-top:32px;min-width:0}
+
+section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;margin-bottom:20px}
+section>h2{font-size:19px;margin:0 0 6px;font-weight:800;letter-spacing:.01em}
+section>h2 .num{color:var(--accent);margin-right:8px;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:13px;margin:0 0 18px}
+h3{font-size:15px;margin:26px 0 10px;font-weight:700}
+h3:first-of-type{margin-top:6px}
+h4{font-size:13.5px;margin:18px 0 8px;font-weight:700;color:#2b3747}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:5px 0}
+.small{font-size:13px;color:var(--muted)}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;text-align:left}
+th{background:#f3f5f8;color:var(--muted);font-size:12px;font-weight:700;white-space:nowrap;letter-spacing:.03em}
+th,td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{background:#f7f9fb;font-weight:700}
+td .tagline{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+
+/* ---------- callouts ---------- */
+.note{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:6px;padding:14px 18px;margin:0 0 16px;font-size:13.5px}
+.note strong{color:var(--accent)}
+.warn{border-left:4px solid var(--amber);background:var(--amber-soft)}
+.warn strong{color:var(--amber)}
+.risk{border-left:4px solid var(--red);background:var(--red-soft)}
+.risk strong{color:var(--red)}
+.note p:last-child{margin-bottom:0}
+.quote{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:#fafbfc;font-size:14.5px;color:#2b3747;margin:0 0 16px}
+
+/* ---------- chips & cards ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.chip{font-size:12px;border:1px solid var(--line);background:#f7f9fb;border-radius:999px;padding:5px 12px;color:#33404f}
+.chip.ok{border-color:var(--accent-line);background:var(--accent-soft);color:var(--accent)}
+.chip.pend{border-color:var(--amber-line);background:var(--amber-soft);color:var(--amber)}
+.chip.no{border-color:var(--red-line);background:var(--red-soft);color:var(--red)}
+
+.grid{display:grid;gap:14px;margin:0 0 16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.box{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fafbfc}
+.box h4{margin:0 0 8px;font-size:13px;color:var(--accent)}
+.box p{margin:0;font-size:13px;color:#3a4757}
+.box ul{padding-left:18px;margin:0;font-size:13px}
+
+/* ---------- decision cards ---------- */
+.dec{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr));margin:0 0 8px}
+.dec>div{border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.dec .head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.06em;margin-bottom:10px}
+.dec .done{background:var(--accent-soft);border-color:var(--accent-line)}
+.dec .done .head{color:var(--accent)}
+.dec .todo{background:var(--amber-soft);border-color:var(--amber-line)}
+.dec .todo .head{color:var(--amber)}
+.dec ul{margin:0;padding-left:18px;font-size:13px}
+.dec li{margin:6px 0}
+
+/* ---------- pool bar ---------- */
+.pool{margin:6px 0 18px}
+.poolbar{display:flex;height:52px;border-radius:8px;overflow:hidden;font-size:12px;color:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.poolbar div{display:flex;align-items:center;justify-content:center;font-weight:700;white-space:nowrap;overflow:hidden}
+.poolbar .p1{flex:0 0 76%;background:#0f6b5c}
+.poolbar .p2{flex:0 0 6%;background:#4d8d80}
+.poolbar .p3{flex:0 0 12%;background:#3f3f8f}
+.poolbar .p4{flex:0 0 6%;background:#7a7ab8}
+.poollegend{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px;font-size:12.5px;color:#3a4757}
+.poollegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+
+/* ---------- flow ---------- */
+.flow{counter-reset:step;list-style:none;padding:0;margin:0 0 16px;display:grid;gap:10px}
+.flow li{counter-increment:step;display:grid;grid-template-columns:34px minmax(0,1fr);gap:14px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:13px 16px;background:#fafbfc}
+.flow li::before{content:counter(step);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:800;margin-top:1px}
+.flow b{display:block;font-size:13.5px}
+.flow span{font-size:12.5px;color:var(--muted)}
+.flow em{font-style:normal;font-size:11.5px;color:var(--accent);font-weight:700;letter-spacing:.04em}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;padding:0;margin:0 0 8px}
+.check li{position:relative;padding-left:28px;margin:9px 0;font-size:13.5px}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:15px;height:15px;border:1.5px solid var(--accent);border-radius:4px;background:#fff}
+.check.todo li::before{border-color:var(--amber);border-radius:50%}
+
+/* ---------- formula ---------- */
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:#17212f;color:#dbe6f1;border-radius:8px;padding:14px 18px;margin:0 0 14px;overflow-x:auto;white-space:nowrap}
+.formula b{color:#8fd8c6}
+
+footer{max-width:1180px;margin:0 auto;padding:0 20px 70px;font-size:12px;color:var(--muted);line-height:1.9}
+footer b{color:#3a4757}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  nav.toc{display:none}
+  main{padding-top:24px}
+  .g2,.g3,.dec{grid-template-columns:minmax(0,1fr)}
+  section{padding:20px 18px}
+}
+@media print{
+  :root{background:#fff}
+  body{background:#fff}
+  header{background:#17212f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  nav.toc{display:none}
+  .layout{grid-template-columns:minmax(0,1fr)}
+  section{break-inside:avoid;box-shadow:none}
+  table{font-size:11px}
+  .poolbar{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">GARVEE · SEO Content Growth</div>
+  <h1>GARVEE SEO 内容增长与销售额外激励方案</h1>
+  <p class="lede">把商品开发已有的专业能力，变成可持续的自然搜索内容资产与可归属销售；用一套规则同时对齐商品开发、负责人、编辑与 SEO 的利益方向。</p>
+  <div class="meta">
+    <span>合并稿 v1.0</span>
+    <span>状态：待业务评审</span>
+    <span>范围：GARVEE 内部商品开发团队</span>
+    <span>两篇原始文档已整合去重</span>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="layout">
+
+<nav class="toc" aria-label="目录">
+  <p>目录</p>
+  <ol>
+    <li><a href="#s1">项目结论与范围</a></li>
+    <li><a href="#s2">要解决的问题</a></li>
+    <li><a href="#s3">参与边界与核心原则</a></li>
+    <li><a href="#s4">为什么值得做</a></li>
+    <li><a href="#s5">角色、权限与职责</a></li>
+    <li><a href="#s6">激励池与分配比例</a></li>
+    <li><a href="#s7">内容生产与发布流程</a></li>
+    <li><a href="#s8">选题与内容质量机制</a></li>
+    <li><a href="#s9">归属规则：自然搜索识别</a></li>
+    <li><a href="#s10">净商品销售额与退款</a></li>
+    <li><a href="#s11">产品方案（MVP）</a></li>
+    <li><a href="#s12">各角色数据视图</a></li>
+    <li><a href="#s13">试点建议</a></li>
+    <li><a href="#s14">验收标准</a></li>
+    <li><a href="#s15">待评审决策清单</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="s1">
+  <h2><span class="num">1</span>项目结论与范围</h2>
+  <p class="sub">先定范围：这是一套内部机制，不是一个外部联盟系统。</p>
+
+  <div class="quote">本项目只服务 GARVEE 内部商品开发团队。MVP 不建设完整的外部联盟／分销系统，而是在现有官网发布能力上补齐四段能力：内部写稿协作、编辑与发布、自然搜索归因、销售激励台账。</div>
+
+  <ol class="flow">
+    <li><div><b>商品开发提交 SEO 文章</b><span>提供商品知识、真实场景与初稿，不能直接发布</span></div></li>
+    <li><div><b>SEO／内容负责人统一编辑、翻译复核与发布</b><span>原文定稿后再启动多语言，各语言分别复核</span></div></li>
+    <li><div><b>系统识别自然搜索带来的订单并完成唯一归属</b><span>按正式自定义渠道组判定，一单最多一条有效归属</span></div></li>
+    <li><div><b>按合格净商品销售额生成内部激励明细</b><span>经退款观察期后进入月度薪酬／奖金流程</span></div></li>
+  </ol>
+
+  <h3>已确定 vs 待业务评审</h3>
+  <div class="dec">
+    <div class="done">
+      <div class="head">✓ 已确定</div>
+      <ul>
+        <li>仅限 GARVEE 内部员工参与</li>
+        <li>商品开发负责商品知识与初稿，不能直接发布</li>
+        <li>文章审核后发布，并建立唯一跟踪标识</li>
+        <li>激励基数为合格净商品销售额（比例待定，见第 6 节）</li>
+      </ul>
+    </div>
+    <div class="todo">
+      <div class="head">◷ 待业务评审</div>
+      <ul>
+        <li>总激励池比例与各角色分配（<b>5%</b> 方案 vs 系统 <b>1%–3%</b> 口径，存在冲突）</li>
+        <li>归因窗口暂按 30 天</li>
+        <li>净销售额需排除的财务扣除项</li>
+        <li>退款观察期暂按 45 天</li>
+        <li>暂按月进入内部薪酬／奖金流程</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span>要解决的问题</h2>
+  <p class="sub">知识已经存在，缺的是一条把它变成资产的链路。</p>
+
+  <p>GARVEE 已经拥有大量商品知识、用户场景经验和品类理解，但这些知识往往停留在商品开发过程与个人经验中，没有持续转化为能被 Google 等搜索引擎获取的内容资产。</p>
+
+  <div class="formula"><b>商品专业知识</b> → 高质量内容 → 自然搜索流量 → 可归属销售 → <b>额外激励</b></div>
+
+  <p>本项目要建立的就是这条简单、可核查的业务链路。它买下的不是"多写几篇文章"，而是把已经存在的专业能力变成长期可复用的增长资产。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span>参与边界与核心原则</h2>
+  <p class="sub">这一节是整套机制能否被接受的前提：不能被理解成"变相加工作"。</p>
+
+  <div class="chips">
+    <span class="chip ok">自愿参与</span>
+    <span class="chip ok">不新增基础 KPI</span>
+    <span class="chip ok">不参加不影响绩效与薪酬</span>
+    <span class="chip pend">参与不等于保证有奖金</span>
+    <span class="chip">只有产生符合规则的销售才计提</span>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:34%">事项</th><th>规则</th></tr></thead>
+      <tbody>
+        <tr><td>是否参加</td><td>员工自主选择，不强制</td></tr>
+        <tr><td>是否属于基础岗位职责</td><td>否，属于额外参与机会</td></tr>
+        <tr><td>不参加是否影响绩效／薪酬</td><td>否</td></tr>
+        <tr><td>参与后是否保证有奖金</td><td>否；只有产生符合规则的销售才计提</td></tr>
+        <tr><td><b>员工需要负责</b></td><td>选题确认、商品专业内容、初稿、按审核意见修改</td></tr>
+        <tr><td><b>员工不需要负责</b></td><td>SEO 技术配置、官网发布、翻译执行、数据判断、订单归因、奖金计算</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><strong>设计意图：</strong>员工能看到三件事就够了 —— 我可以不参加；如果参加，我只做自己最擅长的那部分；如果内容真的产生销售，我能拿到清晰、可追踪的额外收益。</div>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span>为什么值得做</h2>
+  <p class="sub">三方视角各自的收益，决定这套机制能否真正跑起来。</p>
+
+  <div class="grid g3">
+    <div class="box">
+      <h4>对公司</h4>
+      <ul>
+        <li>沉淀可持续的自然搜索内容资产</li>
+        <li>减少对单一付费流量的依赖</li>
+        <li>以结果激励替代纯固定投入</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>对商品开发负责人</h4>
+      <ul>
+        <li>获得团队自然销售、TOP 商品／品类、参与度等经营数据</li>
+        <li>获得新的团队经营抓手</li>
+        <li>同时获得团队结果激励</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>对商品开发员工</h4>
+      <ul>
+        <li>多一条自愿的额外收入渠道</li>
+        <li>用最熟悉的商品知识创造额外收益</li>
+        <li>拿到最高激励权重</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span>角色、权限与职责</h2>
+  <p class="sub">业务角色（有激励分配）与职能角色（只负责流程与数据）分开看。</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th style="width:16%">角色</th><th style="width:30%">主要职责</th><th style="width:34%">权限边界</th><th class="num" style="width:20%">激励角色比例</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>商品开发 / 实际作者</b></td>
+          <td>领取选题、提供商品知识与场景依据、撰写初稿、按意见修改</td>
+          <td>只能编辑自己的内容，<b>不能直接发布</b></td>
+          <td class="num">3.8%</td>
+        </tr>
+        <tr>
+          <td><b>商品开发负责人</b></td>
+          <td>推动团队参与、协调资源、帮助选题与结果管理</td>
+          <td>查看本团队全量内容与激励数据，不修改归因结论</td>
+          <td class="num">0.3%</td>
+        </tr>
+        <tr>
+          <td><b>编辑</b></td>
+          <td>事实核验、结构优化、改稿、可读性与合规</td>
+          <td>可退回、批准；退回必须填写原因</td>
+          <td class="num">0.6%</td>
+        </tr>
+        <tr>
+          <td><b>SEO 专员 / 内容负责人</b></td>
+          <td>定选题规范、搜索意图与关键词、内链与商品链接、最终发布与下线、效果监控</td>
+          <td>可退回、批准、发布、下线内容</td>
+          <td class="num">0.3%</td>
+        </tr>
+        <tr>
+          <td>技术 / 数据</td>
+          <td>建立唯一标识、采集访问与订单、执行归因与台账计算</td>
+          <td>不修改业务审核结论</td>
+          <td class="num">—</td>
+        </tr>
+        <tr>
+          <td>财务 / 薪酬</td>
+          <td>月度复核激励明细、执行发放、处理冲正</td>
+          <td>不修改文章归属与原始订单数据</td>
+          <td class="num">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><strong>翻译安排：</strong>原文通过后由系统完成机器初译，SEO／内容负责人或对应市场同事做本地化复核；原文先定稿，再启动翻译，各语言可分别复核与发布。</div>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span>激励池与分配比例</h2>
+  <p class="sub">先有项目结果激励，再按角色贡献分配；不是层层抽成。</p>
+
+  <p>业务提案从符合规则的合格净商品销售额中计提 <b>5%</b> 作为总激励池。它是预先确定的项目结果激励，按不同角色的贡献进行分配。</p>
+
+  <div class="pool">
+    <div class="poolbar" role="img" aria-label="激励池分配：作者 3.8%、负责人 0.3%、编辑 0.6%、SEO 0.3%">
+      <div class="p1">作者 3.8%</div>
+      <div class="p2">0.3%</div>
+      <div class="p3">编辑 0.6%</div>
+      <div class="p4">0.3%</div>
+    </div>
+    <div class="poollegend">
+      <span><i style="background:#0f6b5c"></i>商品开发 / 作者 · 占池 76%</span>
+      <span><i style="background:#4d8d80"></i>商品开发负责人 · 6%</span>
+      <span><i style="background:#3f3f8f"></i>编辑 · 12%</span>
+      <span><i style="background:#7a7ab8"></i>SEO 专员 · 6%</span>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:22%">角色</th><th class="num" style="width:12%">比例</th><th style="width:32%">主要贡献</th><th style="width:34%">计算口径</th></tr></thead>
+      <tbody>
+        <tr><td>商品开发 / 实际作者</td><td class="num"><b>3.8%</b></td><td>提供商品知识、真实场景与初稿；承担最主要的额外内容生产</td><td>该员工具体文章对应的合格净商品销售额</td></tr>
+        <tr><td>商品开发负责人</td><td class="num">0.3%</td><td>推动团队参与、协调资源、帮助选题与结果管理</td><td>其管理团队产生的合格净商品销售额</td></tr>
+        <tr><td>编辑</td><td class="num">0.6%</td><td>事实核验、结构优化、改稿、可读性与内容质量</td><td>其负责文章对应的合格净商品销售额</td></tr>
+        <tr><td>SEO 专员</td><td class="num">0.3%</td><td>选题、搜索意图、关键词、SEO 优化与效果监控</td><td>其负责文章对应的合格净商品销售额</td></tr>
+        <tr class="total"><td>合计</td><td class="num">5.0%</td><td colspan="2">按贡献拆分，非层层抽成</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>为什么作者拿最高</h3>
+  <p>商品开发是否愿意持续参与，是项目能否跑起来的关键。作者获得 3.8%，占总激励池 <b>76%</b>，确保真正承担额外内容生产的人拿到绝对大头；其余角色只作为协同激励，不改变作者的主体地位。</p>
+
+  <div class="note risk">
+    <strong>口径冲突，需在评审时消解：</strong>业务方案为"总池 5%，作者 3.8%"；产品 MVP 文中写作"按合格净商品销售额的 <b>1%~3%</b> 计提"。两者无法同时成立 —— 作者的 3.8% 已超过 3% 上限。建议按下列方式收敛，而不是保留两套数字：
+    <ul style="margin:10px 0 0">
+      <li><b>若采纳 5% 池</b>：系统只配置"单篇作者 3.8% + 负责人 0.3% + 编辑 0.6% + SEO 0.3%"，MVP 中删除 1%~3% 的表述。</li>
+      <li><b>若采纳 1%~3%</b>：需重新给出分配表（作者 3.8% 必须下调），并重算占池比例与管理层投入产出模型。</li>
+      <li>无论哪种：比例必须<b>参数化可配置</b>，并把使用的比例版本写入每条激励记录，后续调比例不追改历史结果。</li>
+    </ul>
+  </div>
+
+  <div class="formula">应计激励 = 合格净商品销售额 × 对应角色比例（比例版本随记录固化）</div>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span>内容生产与发布流程</h2>
+  <p class="sub">原则：商品开发只做专业内容，编辑管质量，SEO 管增长，发布、归因与结算不增加商品开发的操作负担。</p>
+
+  <h3>业务流转（7 阶段）</h3>
+  <ol class="flow">
+    <li><div><em>SEO</em><b>SEO 选题</b><span>基于搜索需求与商品机会建立选题池，也接受商品开发主动提案</span></div></li>
+    <li><div><em>商品开发</em><b>撰写提交</b><span>自愿领取／确认选题，提交初稿、商品事实与场景依据</span></div></li>
+    <li><div><em>编辑</em><b>编辑审核</b><span>审核事实、结构、表达、可读性与合规；退回必须说明原因</span></div></li>
+    <li><div><em>SEO</em><b>SEO 优化</b><span>优化搜索意图、关键词、标题结构、内链与商品链接</span></div></li>
+    <li><div><em>编辑 / 市场</em><b>翻译与本地化</b><span>原文通过后机器初译并人工复核，需要时分语言发布</span></div></li>
+    <li><div><em>SEO / 内容</em><b>官网发布</b><span>发布到官网内容区并记录正式 URL</span></div></li>
+    <li><div><em>SEO / 数据 / 财务</em><b>效果监测与结算</b><span>记录自然访问、订单、合格销售额及激励结果</span></div></li>
+  </ol>
+
+  <h3>系统侧动作（对应 6 步）</h3>
+  <ol class="flow">
+    <li><div><b>选题分配</b><span>SEO／内容负责人创建选题并指定商品与目标市场</span></div></li>
+    <li><div><b>撰写提交</b><span>商品开发提交初稿与商品依据，形成新版本记录</span></div></li>
+    <li><div><b>编辑审核</b><span>审核事实、结构、搜索意图与合规性</span></div></li>
+    <li><div><b>翻译复核</b><span>机器初译 + 人工本地化复核</span></div></li>
+    <li><div><b>官网发布</b><span>发布并回写正式 URL 与文章编号</span></div></li>
+    <li><div><b>效果监测</b><span>记录索引、自然访问、订单与激励</span></div></li>
+  </ol>
+
+  <h3>内容状态（仅保留这 5 个主状态）</h3>
+  <div class="chips">
+    <span class="chip">草稿</span>
+    <span class="chip">待审核</span>
+    <span class="chip pend">退回修改</span>
+    <span class="chip">待发布</span>
+    <span class="chip ok">已发布</span>
+  </div>
+  <p class="small">退回规则：审核人必须填写退回原因；商品开发修改后形成新版本并重新进入编辑审核。每次提交、退回、批准、发布、下线均记录人员与时间。</p>
+
+  <div class="note"><strong>发布门槛：</strong>只有审核通过的版本可以发布，商品开发没有官网发布权限。原文先定稿再启动翻译，各语言分别复核发布。</div>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span>选题与内容质量机制</h2>
+  <p class="sub">不依赖员工自由发挥：SEO 先建统一选题池，商品开发可提案，由 SEO 判断真实搜索价值。</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:22%">选题来源</th><th>典型方向</th></tr></thead>
+      <tbody>
+        <tr><td>搜索需求</td><td>How-to、Buying Guide、Comparison、选购、安装、维护、Troubleshooting、场景问题</td></tr>
+        <tr><td>商品机会</td><td>重点新品、高库存、重点品类、有搜索需求的 SKU、专业壁垒高的产品</td></tr>
+        <tr><td>商品开发提案</td><td>员工认为用户会真实搜索的问题、场景或产品差异点</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g2">
+    <div class="box">
+      <h4>编辑把关：内容是否准确、好读、有用</h4>
+      <p>事实核验、结构、表达、合规性；依据不足直接退回。</p>
+    </div>
+    <div class="box">
+      <h4>SEO 把关：用户能否搜到</h4>
+      <p>搜索意图匹配、关键词与标题结构、内链与商品链接、可索引性。</p>
+    </div>
+  </div>
+
+  <p><b>低质量、无搜索价值或事实依据不足的内容不进入正式发布。</b>第一阶段的目标不是文章数量，而是跑出真实案例。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span>归属规则：自然搜索识别与唯一归属</h2>
+  <p class="sub">为减少争议：唯一归属、规则提前确定、历史结果可追溯。</p>
+
+  <ol class="flow">
+    <li><div><b>搜索进入文章</b><span>首次落地到已发布、可索引的文章页</span></div></li>
+    <li><div><b>核对正式渠道</b><span>使用 GARVEE 正式自定义渠道组判定自然搜索</span></div></li>
+    <li><div><b>绑定文章与员工</b><span>记录文章编号、员工编号与进入时间</span></div></li>
+    <li><div><b>核对有效订单</b><span>暂按进入后 30 天内支付成功的订单</span></div></li>
+    <li><div><b>检查唯一归属</b><span>同一订单不得重复计入其他激励体系</span></div></li>
+    <li><div><b>生成激励记录</b><span>写入唯一订单归属、计提金额与规则版本</span></div></li>
+  </ol>
+
+  <h3>归因口径</h3>
+  <ul>
+    <li><b>自然搜索判定：</b>使用 GARVEE 正式自定义渠道口径；默认渠道组、Source / Medium 仅用于辅助审计，不作为计提依据。</li>
+    <li><b>归因窗口：</b>暂按 <b>30 天</b>。</li>
+    <li><b>入口选择：</b>采用"窗口内最近一次合格自然文章入口"。</li>
+    <li><b>唯一归属：</b>同一订单在本激励体系内只能有一条有效主归属，避免一单多奖。</li>
+    <li><b>冲突处理：</b>如订单已进入其他佣金或人工激励体系，先冻结复核，不自动重复计提。</li>
+    <li><b>口径边界：</b>归因销售属于"可归属自然搜索销售额"，<b>不直接等同于全部新增销售额</b>，对外表述不得混用。</li>
+  </ul>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span>合格净商品销售额与退款</h2>
+  <p class="sub">激励基数用净商品销售额，不是订单总支付金额。</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:24%">项目</th><th>口径</th></tr></thead>
+      <tbody>
+        <tr><td>计入</td><td>实际成交商品的净额（去除取消、退款、商品退款后）</td></tr>
+        <tr><td>初期排除</td><td>取消、退款、商品退款、礼品卡等非实际商品收入</td></tr>
+        <tr><td>暂不进入基数</td><td>税费、运费等非商品收入（最终以财务确认口径为准）</td></tr>
+        <tr><td>退款观察期</td><td>暂按 <b>45 天</b></td></tr>
+        <tr><td>发放前退款</td><td>直接减少应发金额</td></tr>
+        <tr><td>发放后退款</td><td>形成冲正记录，在后续批次抵扣</td></tr>
+        <tr><td>留痕要求</td><td>原始计提、退款与冲正记录全部保留，<b>不得覆盖或删除</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note warn"><strong>待财务确认：</strong>净商品销售额的具体扣除项清单；低毛利商品是否需要设置激励保护线（如低于某毛利率不计提或封顶）。</div>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span>产品方案（MVP）</h2>
+  <p class="sub">最小可用范围：把"写稿—审核—发布—归因—台账"做成一条闭环，不做多余功能。</p>
+
+  <h3>必须具备的能力</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:18%">模块</th><th>能力</th></tr></thead>
+      <tbody>
+        <tr><td>内容任务</td><td>选题分配、初稿提交、版本记录、退回意见、状态流转</td></tr>
+        <tr><td>编辑发布</td><td>原文审核、机器初译、本地化复核、发布地址回写、下线</td></tr>
+        <tr><td>跟踪归因</td><td>唯一标识、自然入口记录、订单匹配、重复归属检查</td></tr>
+        <tr><td>激励台账</td><td>计提、观察期、退款冲正、冻结复核、月度导出</td></tr>
+        <tr><td>内部看板</td><td>员工查看本人文章与激励；负责人查看团队进度与效果</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>唯一标识设计</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:22%">标识</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td>员工编号</td><td>确认文章负责人与激励归属人</td></tr>
+        <tr><td>文章编号</td><td>贯穿草稿、翻译、发布地址与数据分析</td></tr>
+        <tr><td>自然入口编号</td><td>记录一次合格自然搜索进入</td></tr>
+        <tr><td>订单编号</td><td>防止订单重复归属</td></tr>
+        <tr><td>激励事件编号</td><td>关联计提、退款、冲正与发放记录</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>系统关键规则</h3>
+  <ul>
+    <li>只有审核通过的版本可以发布；商品开发无官网发布权限。</li>
+    <li>每次提交、退回、批准、发布、下线都记录人员与时间。</li>
+    <li>同一订单最多存在一条有效激励记录（数据库层面强约束，而非仅流程约束）。</li>
+    <li>归因规则版本与激励比例版本必须写入激励记录，后续改规则不追改历史结果。</li>
+    <li>员工只查看本人明细；负责人、技术／数据、财务按职责查看全量数据。</li>
+  </ul>
+
+  <div class="note"><strong>仍需产品确认：</strong>官网文章最终发布到哪个现有内容栏目、由哪个后台或接口承接；这决定发布回写与 URL 跟踪的实现方式。</div>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span>各角色数据视图</h2>
+  <p class="sub">先明确谁需要看什么，再决定看板怎么做。</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:20%">角色</th><th>最重要的数据</th></tr></thead>
+      <tbody>
+        <tr><td>商品开发</td><td>我的文章、自然访问、订单、合格销售额、待发／已发／冲正收益</td></tr>
+        <tr><td>商品开发负责人</td><td>参与人数、团队自然销售、TOP 员工／文章／商品／品类、负责人激励</td></tr>
+        <tr><td>编辑</td><td>待处理内容、已发布内容、负责文章的流量与销售表现</td></tr>
+        <tr><td>SEO 专员</td><td>索引、排名、自然访问、转化、负责内容销售、低效／待更新内容</td></tr>
+        <tr><td>管理层</td><td>项目自然流量、可归属销售、总激励、内容资产与投入产出趋势</td></tr>
+        <tr><td>财务 / 薪酬</td><td>月度计提、冲正、冻结复核、应发金额与批次记录</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span>试点建议：先自愿小范围跑通</h2>
+  <p class="sub">第一阶段不追数量，只求跑出真实案例。</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th style="width:24%">建议项</th><th>第一阶段</th></tr></thead>
+      <tbody>
+        <tr><td>参与方式</td><td>自愿报名</td></tr>
+        <tr><td>参与人数</td><td>5–10 名商品开发</td></tr>
+        <tr><td>内容规模</td><td>约 20–30 篇高质量文章</td></tr>
+        <tr><td>观察周期</td><td>建议至少 2–3 个月起步</td></tr>
+        <tr><td>重点验证</td><td>参与意愿、内容质量、自然流量、销售归因、激励比例可持续性</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>第一阶段要回答的三个问题：哪些商品、哪些内容能稳定获得搜索流量并产生销售；员工实际能获得多少额外收益；公司投入是否可持续。成功后再逐步扩大参与范围。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span>验收标准</h2>
+  <p class="sub">可逐条验收，避免"流程做出来了"就算完成。</p>
+
+  <ul class="check">
+    <li>商品开发可在一个入口完成领取、撰写、提交和查看退回意见。</li>
+    <li>SEO／内容负责人可完成审核、翻译复核、发布和下线。</li>
+    <li>每篇已发布文章都有稳定且唯一的文章编号与负责人。</li>
+    <li>正式自然搜索报表使用 GARVEE 指定自定义渠道组。</li>
+    <li>任一订单不能生成两条有效激励记录。</li>
+    <li>退款可自动形成冲正，且原始记录可追溯、不可覆盖。</li>
+    <li>财务／薪酬可按月导出员工、订单、计提、冲正与应发金额。</li>
+  </ul>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span>待评审决策清单</h2>
+  <p class="sub">这 6 项确认后，即可拆解产品原型、接口和研发任务。</p>
+
+  <ul class="check todo">
+    <li><b>激励比例口径（优先）</b>：总池 5%（作者 3.8% / 负责人 0.3% / 编辑 0.6% / SEO 0.3%）与系统"1%~3%"二者择一，并确定参数化方案。</li>
+    <li><b>参与原则</b>：商品开发自愿参与、不进入基础 KPI、不影响正常绩效与薪酬。</li>
+    <li><b>归因规则</b>：30 天归因窗口与"窗口内最近一次合格自然文章入口"是否确认。</li>
+    <li><b>财务口径</b>：合格净商品销售额的扣除项；低毛利商品是否设激励保护线。</li>
+    <li><b>退款与发放</b>：45 天退款观察期；激励通过工资、奖金还是专项奖励发放，及月度节奏。</li>
+    <li><b>发布承接</b>：官网文章最终发布到哪个现有内容栏目，由哪个后台或接口承接。</li>
+  </ul>
+
+  <div class="quote" style="margin-top:20px">项目最终要验证的不是"能不能把流程做出来"，而是这套利益机制能否让商品知识持续转化为自然搜索销售 —— 让员工愿意参与、负责人愿意推动、编辑和 SEO 愿意协同，并形成公司可以长期复制的内容增长能力。</div>
+</section>
+
+</main>
+</div>
+</div>
+
+<footer>
+  <p><b>合并说明：</b>本文由两篇原始文档整合而成 —— ①《GARVEE SEO 内容增长与销售额外激励计划说明》（业务方案，含 5% 激励池与角色分工）；②《项目范围与产品 MVP 方案》（系统方案，含角色权限、流程、归因与验收）。重复内容已合并，冲突内容未擅自消解，统一标注在第 6 节与第 15 节。</p>
+  <p><b>口径边界：</b>文中"可归属自然搜索销售额"不等于全部新增销售额；激励比例为提案值，最终以业务评审与财务确认口径为准。</p>
+</footer>
+
+</body>
+</html>
